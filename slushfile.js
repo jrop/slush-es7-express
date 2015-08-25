@@ -2,6 +2,7 @@ var gulp = require('gulp')
 
 var conflict = require('gulp-conflict')
 var inquirer = require('inquirer')
+var install = require('gulp-install')
 var template = require('gulp-template')
 
 gulp.task('default', function (cb) {
@@ -10,12 +11,11 @@ gulp.task('default', function (cb) {
 	}, {
 		type: 'input', name: 'port', message: 'Port', default: '8888'
 	}], function (answers) {
-		console.log(answers)
-
 		gulp.src(__dirname + '/templates/app/**')
 			.pipe(template(answers))
 			.pipe(conflict('./'))
 			.pipe(gulp.dest('./'))
-			.on('end', cb)
+			.pipe(install()).on('end', cb)
+			.resume()
 	})
 })

@@ -4,21 +4,16 @@
   "description": "",
   "main": "app.js",
   "license": "ISC",
+  "scripts": {
+    "watch": "./node_modules/.bin/watch-run -p 'src/**/*.*' make"
+  },
   "devDependencies": {
-    "babel-core": "^5.8.22",
+    "babel": "^5.8.21",
     "babelify": "^6.2.0",
     "browserify": "^11.0.1",
-    "buffer": "^3.4.2",
-    "globby": "^2.1.0",
-    "gulp": "^3.9.0",
-    "gulp-autoprefixer": "^2.3.1",
-    "gulp-babel": "^5.2.1",
-    "gulp-less": "^3.0.3",
-    "gulp-print": "^1.1.0",
-    "rimraf": "^2.4.2",
-    "source": "0.0.3",
-    "through2": "^2.0.0",
-    "vinyl-source-stream": "^1.1.0"
+    "less": "^2.5.1",
+    "less-plugin-autoprefix": "^1.4.2",
+    "watch-run": "^1.2.2"
   },
   "dependencies": {
     "babel-runtime": "^5.8.20",
