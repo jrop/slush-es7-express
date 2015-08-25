@@ -7,5 +7,4 @@ app.all('*', function(req, res) {
 	res.end('<%= packageName %> HTTP server')
 })
 
-app.listen(CONFIG.port)
-console.log('Listening on port', CONFIG.port)
+export default app

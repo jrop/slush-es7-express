@@ -12,5 +12,6 @@
     "gulp-conflict": "^0.4.0",
     "gulp-template": "^3.0.0",
     "inquirer": "^0.9.0"
-  }
+  },
+  "repository": "jrop/slush-es7-express"
 }

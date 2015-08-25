@@ -14,8 +14,8 @@ gulp.task('default', function (cb) {
 
 		gulp.src(__dirname + '/templates/app/**')
 			.pipe(template(answers))
-			.pipe(conflict('./gen'))
-			.pipe(gulp.dest('./gen'))
+			.pipe(conflict('./'))
+			.pipe(gulp.dest('./'))
 			.on('end', cb)
 	})
 })

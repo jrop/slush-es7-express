@@ -9,30 +9,30 @@
 // Client JS
 // npm i --save-dev babelify browserify buffer globby source through2 vinyl-source-stream
 
-var gulp = require('gulp')
-var path = require('path')
+import gulp from 'gulp'
+import path from 'path'
 
 // CSS
-var autoprefixer = require('gulp-autoprefixer')
-var less = require('gulp-less')
+import autoprefixer from 'gulp-autoprefixer'
+import less from 'gulp-less'
 
 // Server JS
-var babel = require('gulp-babel')
+import babel from 'gulp-babel'
 
 // Client JS
-var babelify = require('babelify')
-var browserify = require('browserify')
+import babelify from 'babelify'
+import browserify from 'browserify'
 
 // Other
-var globby = require('globby')
-var print = require('gulp-print')
-var rimraf = require('rimraf')
-var source = require('vinyl-source-stream')
-var through = require('through2')
+import globby from 'globby'
+import print from 'gulp-print'
+import rimraf from 'rimraf'
+import source from 'vinyl-source-stream'
+import through from 'through2'
 
 function tellerror(err) {
 	console.error('ERROR', err.message)
-	// this.emit('end')
+	this.emit('end')
 }
 
 gulp.task('default', [ 'js', 'css' ])
@@ -42,7 +42,7 @@ gulp.task('js', [ 'server-js', 'client-js' ])
 gulp.task('server-js', function() {
 	return gulp.src('src/server/**/*.js')
 		.pipe(print())
-		.pipe(babel({ stage: 1 }))
+		.pipe(babel({ stage: 1, optional: [ 'runtime' ] }))
 		.on('error', tellerror)
 		.pipe(gulp.dest('build'))
 })
@@ -50,7 +50,6 @@ gulp.task('server-js', function() {
 gulp.task('client-js', function() {
 	var stream = through()
 		.pipe(print())
-		.pipe(gulp.dest('public/build'))
 
 	globby([ 'src/client/js/**/*.* ' ], function(err, paths) {
 		if (err) {
@@ -71,9 +70,10 @@ gulp.task('client-js', function() {
 			})
 
 			console.log(path.relative('src/client', fname))
-			b.bundle()
+			b.bundle().on('error', tellerror)
 				.pipe(source(path.relative('src/client', fname)))
 				.pipe(stream)
+				.pipe(gulp.dest('public/build'))
 		})
 	})
 
