@@ -9,6 +9,7 @@
   "author": "Jonathan Apodaca",
   "license": "ISC",
   "dependencies": {
+    "gulp": "^3.9.0",
     "gulp-conflict": "^0.4.0",
     "gulp-install": "^0.5.0",
     "gulp-template": "^3.0.0",

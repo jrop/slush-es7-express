@@ -1,4 +1,4 @@
-var site = module.exports = require('./build/app.js')
+var site = module.exports = require('./build/index.js')
 
 if (require.main === module) {
 	var config = require('config')
